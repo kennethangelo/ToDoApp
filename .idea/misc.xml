@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/ToDoApp_160419144/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/ToDoApp_160419144/app/src/main/res/layout/fragment_create_to_do.xml" value="0.27804107424960506" />
+        <entry key="..\:/ToDoApp_160419144/app/src/main/res/layout/fragment_to_do_list.xml" value="0.196875" />
+        <entry key="..\:/ToDoApp_160419144/app/src/main/res/layout/todo_item_layout.xml" value="0.5509783728115345" />
+      </map>
+    </option>
+  </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>

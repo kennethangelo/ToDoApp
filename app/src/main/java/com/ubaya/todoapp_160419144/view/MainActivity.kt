@@ -1,7 +1,8 @@
-package com.ubaya.todoapp_160419144
+package com.ubaya.todoapp_160419144.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.ubaya.todoapp_160419144.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
