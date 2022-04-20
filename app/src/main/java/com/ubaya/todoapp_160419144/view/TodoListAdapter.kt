@@ -3,6 +3,7 @@ package com.ubaya.todoapp_160419144.view
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.ubaya.todoapp_160419144.R
 import com.ubaya.todoapp_160419144.model.Todo
@@ -26,8 +27,18 @@ class TodoListAdapter(
 
     override fun onBindViewHolder(holder: TodoListAdapter.TodoViewHolder, position: Int) {
         holder.view.checkTask.setText(todoList[position].title.toString())
-        holder.view.checkTask.setOnCheckedChangeListener{ compoundButton, b ->
-            adapterOnClick(todoList[position])
+        holder.view.imgEdit.setOnClickListener{
+            //This code is used to setup the listener whenever user clicks on pencil edit button.
+            //It navigates to EditToDoFragment
+            //Also passes the args of selected uuid
+            val action = ToDoListFragmentDirections.actionEditToDoFragment(todoList[position].uuid)
+            Navigation.findNavController(it).navigate(action)
+        }
+        holder.view.checkTask.setOnCheckedChangeListener{ compoundButton, isChecked ->
+            //If the task is checked => should be removed from database
+           if(isChecked == true){
+               adapterOnClick(todoList[position])
+           }
         }
     }
 

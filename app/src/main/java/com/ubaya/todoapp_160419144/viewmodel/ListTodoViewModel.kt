@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.room.Room
 import com.ubaya.todoapp_160419144.model.Todo
 import com.ubaya.todoapp_160419144.model.TodoDatabase
+import com.ubaya.todoapp_160419144.util.buildDB
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -28,11 +29,7 @@ class ListTodoViewModel(application: Application):AndroidViewModel(application),
             todoLoadErrorLD.value = false
         //launch => create a job. known as fire and forgets builder
             launch{
-                val db = Room.databaseBuilder(
-                    getApplication(),
-                    TodoDatabase::class.java,
-                    "newtododb"
-                ).build()
+                val db = buildDB(getApplication())
                 todoLD.value = db.todoDao().selectAllToDo()
                 //todo list livedata is populated with data selected from DB
             }
@@ -40,12 +37,17 @@ class ListTodoViewModel(application: Application):AndroidViewModel(application),
 
     fun clearTask(todo: Todo){
         launch{
-            val db = Room.databaseBuilder(
-                getApplication(),
-                TodoDatabase::class.java, "newtododb"
-            ).build()
+            val db = buildDB(getApplication())
             db.todoDao().deleteTodo(todo)
             //DeleteToDo = clear task simply delete single todo based on the selected obj
+            todoLD.value = db.todoDao().selectAllToDo()
+        }
+    }
+
+    fun checkToDo(todo: Todo){
+        launch{
+            val db = buildDB(getApplication())
+            db.todoDao().checkToDo(todo.uuid)
             todoLD.value = db.todoDao().selectAllToDo()
         }
     }

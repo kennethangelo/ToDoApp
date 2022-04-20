@@ -16,7 +16,7 @@ import kotlinx.android.synthetic.main.fragment_to_do_list.*
 class ToDoListFragment : Fragment() {
     private lateinit var viewModel:ListTodoViewModel
     private val todoListAdapter = TodoListAdapter(arrayListOf(),
-        {item -> viewModel.clearTask(item)})
+        {item -> viewModel.checkToDo(item)})
     //Inside this lambda function, it safely call clearTask from viewmodel
 
     override fun onCreateView(
@@ -48,7 +48,7 @@ class ToDoListFragment : Fragment() {
         recViewToDo.adapter = todoListAdapter
 
         fabToDo.setOnClickListener {
-            val action = ToDoListFragmentDirections.actionCreateToDo()
+            val action = ToDoListFragmentDirections.actionCreateToDoFragment()
             Navigation.findNavController(it).navigate(action)
         }
 
