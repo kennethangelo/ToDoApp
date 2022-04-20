@@ -13,7 +13,8 @@ data class Todo(
 @ColumnInfo(name="priority")
     var priority: Int,
 @ColumnInfo(name="is_done")
-    var is_done: Int,
+    var is_done: Int, //is_done is set to INT because based on SQLite documentation, it doesn't have a separate Boolean datatype ("True" or "False").
+    //That's why we just use Integer as 0 for False, 1 for True.
     ){
     @PrimaryKey(autoGenerate = true)
     var uuid: Int = 0
