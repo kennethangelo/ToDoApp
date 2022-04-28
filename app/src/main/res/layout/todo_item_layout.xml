@@ -1,7 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:tools="http://schemas.android.com/tools">
+<!--Data binding allows us to inject the variable inside the layout -->
+<!--Add to do variable in this layout mainly because it contains the To Do Data (in the chkbox)-->
+    <data>
+        <variable
+            name="todo"
+            type="com.ubaya.todoapp_160419144.model.Todo" />
+        <variable
+            name="listener"
+            type="com.ubaya.todoapp_160419144.view.TodoCheckedChangeListener" />
+        <variable
+            name="editListener"
+            type="com.ubaya.todoapp_160419144.view.TodoEditClick" />
+    </data>
+
+<androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -13,12 +29,14 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="16dp"
-        android:text="CheckBox"
+        android:text="@{todo.title}"
+        android:onCheckedChanged="@{(cb, isChecked) -> listener.onCheckChanges(cb, isChecked, todo)}"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+    </CheckBox>
 
     <ImageView
         android:id="@+id/imgEdit"
@@ -30,3 +48,4 @@
         app:layout_constraintTop_toTopOf="@+id/checkTask"
         app:srcCompat="@drawable/ic_baseline_edit_24" />
 </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
